@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentación · Central de comunicación inteligente</title>
+<meta name="description" content="Cada conversación, cada canal, un solo lugar — con un asistente que lo entiende todo. Una guía clara para quien no es técnico.">
+<meta name="color-scheme" content="dark light">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="agentic-whatsapp-nirvana">
+<meta property="og:title" content="agentic-whatsapp-nirvana — Cada conversacion. Cada canal. Un solo lugar.">
+<meta property="og:description" content="Convierte cualquier sistema de IA en un centro de atencion omnicanal: WhatsApp, Instagram, Telegram, SMS, correo y voz en un solo lugar, con un asistente que lo entiende todo. Parte del pack Genesis Circle de Nirvana-OS.">
+<meta property="og:url" content="https://gutomec.github.io/agentic-whatsapp-nirvana/docs-es.html">
+<meta property="og:image" content="https://gutomec.github.io/agentic-whatsapp-nirvana/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mascota pulpo de Nirvana-OS orquestando iconos de WhatsApp, Instagram, Telegram, SMS, correo y voz.">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="agentic-whatsapp-nirvana — Cada conversacion. Cada canal. Un solo lugar.">
+<meta name="twitter:description" content="Convierte cualquier sistema de IA en un centro de atencion omnicanal: WhatsApp, Instagram, Telegram, SMS, correo y voz en un solo lugar, con un asistente que lo entiende todo. Parte del pack Genesis Circle de Nirvana-OS.">
+<meta name="twitter:image" content="https://gutomec.github.io/agentic-whatsapp-nirvana/og-image.png">
+
+<!-- Fuente Inter (tipografía fuerte, estilo Uber Move) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<!-- Iconos lucide (CDN) — enriquecen sin ser esenciales -->
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
+<!-- GSAP (CDN) — solo realza la entrada del hero; la página funciona sin él -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+
+<style>
+/* ============ Tokens (tema Uber: negro/blanco, alto contraste, esquinas suaves) ============ */
+:root{
+  --bg:#0a0a0a; --bg-elevated:#111111; --surface:#151515; --surface-2:#1c1c1c;
+  --text:#ffffff; --text-muted:#a1a1a1; --text-faint:#6e6e6e;
+  --border:#242424; --border-strong:#333333;
+  --accent:#ffffff; --accent-ink:#000000;
+  --wa:#25d366; --voice:#8b7bff; --ig:#e1306c; --tg:#29a9eb; --sms:#f5a623; --email:#ea4335;
+  --radius:18px; --radius-sm:12px; --radius-lg:28px;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 24px 60px -20px rgba(0,0,0,.6);
+  --maxw:1120px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+[data-theme="light"]{
+  --bg:#ffffff; --bg-elevated:#ffffff; --surface:#f7f7f7; --surface-2:#efefef;
+  --text:#000000; --text-muted:#4d4d4d; --text-faint:#8a8a8a;
+  --border:#e8e8e8; --border-strong:#d6d6d6;
+  --accent:#000000; --accent-ink:#ffffff;
+  --shadow:0 1px 2px rgba(0,0,0,.05), 0 30px 60px -30px rgba(0,0,0,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  font-family:var(--font);background:var(--bg);color:var(--text);
+  line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;transition:background .5s var(--ease),color .5s var(--ease);
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--text);color:var(--bg)}
+
+/* ============ Ayudas de layout ============ */
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(20px,5vw,40px)}
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint);display:inline-flex;align-items:center;gap:8px}
+.eyebrow::before{content:"";width:22px;height:1.5px;background:var(--border-strong)}
+section{padding:clamp(72px,10vw,128px) 0;position:relative}
+.section-head{max-width:720px;margin-bottom:clamp(40px,6vw,64px)}
+h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:18px 0 16px}
+.section-head p{font-size:clamp(1rem,1.7vw,1.18rem);color:var(--text-muted);max-width:60ch}
+
+/* ============ Barra de progreso ============ */
+.progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--text);z-index:120;transition:width .1s linear}
+
+/* ============ Nav superior (sticky, anclas) ============ */
+.nav{position:sticky;top:0;z-index:100;backdrop-filter:saturate(180%) blur(18px);
+  background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+.nav.scrolled{border-color:var(--border)}
+.nav-inner{display:flex;align-items:center;gap:20px;height:68px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em;font-size:1.02rem;white-space:nowrap}
+.brand-mark{width:30px;height:30px;border-radius:9px;background:var(--text);color:var(--bg);display:grid;place-items:center;flex:0 0 auto}
+.brand-mark svg{width:17px;height:17px}
+.nav-links{display:flex;gap:4px;margin-left:auto;align-items:center}
+.nav-links a.navlink{font-size:.9rem;font-weight:500;color:var(--text-muted);padding:8px 13px;border-radius:10px;transition:color .2s,background .2s;white-space:nowrap}
+.nav-links a.navlink:hover{color:var(--text);background:var(--surface)}
+.nav-links a.navlink.active{color:var(--text)}
+.nav-actions{display:flex;align-items:center;gap:8px;margin-left:6px}
+.icon-btn{width:40px;height:40px;border-radius:11px;border:1px solid var(--border);background:var(--bg-elevated);color:var(--text);display:grid;place-items:center;cursor:pointer;transition:border-color .2s,transform .2s,background .2s}
+.icon-btn:hover{border-color:var(--border-strong);transform:translateY(-1px)}
+.icon-btn svg{width:19px;height:19px}
+.icon-btn .moon{display:none}
+[data-theme="light"] .icon-btn .sun{display:none}
+[data-theme="light"] .icon-btn .moon{display:block}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:.94rem;padding:12px 22px;border-radius:999px;cursor:pointer;border:1px solid transparent;transition:transform .2s var(--ease),background .2s,box-shadow .2s;white-space:nowrap}
+.btn-primary{background:var(--text);color:var(--bg)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -12px color-mix(in srgb,var(--text) 60%,transparent)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--border-strong)}
+.btn-ghost:hover{background:var(--surface);transform:translateY(-2px)}
+.hamburger{display:none}
+
+/* selector de idioma (PT · EN · ES) */
+.lang-switch{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--border);background:var(--bg-elevated);border-radius:999px;padding:3px}
+.lang-switch a{font-size:.76rem;font-weight:600;color:var(--text-faint);padding:5px 10px;border-radius:999px;line-height:1;transition:color .2s,background .2s}
+.lang-switch a:hover{color:var(--text)}
+.lang-switch a.active{background:var(--text);color:var(--bg)}
+
+/* menú móvil */
+.mobile-menu{position:fixed;inset:68px 0 auto 0;background:var(--bg);border-bottom:1px solid var(--border);padding:12px clamp(20px,5vw,40px) 22px;z-index:99;transform:translateY(-12px);opacity:0;pointer-events:none;transition:.3s var(--ease)}
+.mobile-menu.open{transform:none;opacity:1;pointer-events:auto}
+.mobile-menu a{display:block;padding:13px 6px;font-weight:600;border-bottom:1px solid var(--border);color:var(--text-muted)}
+.mobile-menu a:last-child{border:0}
+
+/* ============ Hero ============ */
+.hero{padding-top:clamp(56px,8vw,90px);padding-bottom:clamp(40px,6vw,72px);position:relative;overflow:hidden}
+.hero-grid-bg{position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 20%,transparent 75%)}
+.hero-inner{position:relative;z-index:1;max-width:900px}
+.hero .pill{display:inline-flex;align-items:center;gap:9px;font-size:.82rem;font-weight:600;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);padding:7px 15px 7px 11px;border-radius:999px;margin-bottom:26px}
+.hero .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--wa);box-shadow:0 0 0 4px color-mix(in srgb,var(--wa) 22%,transparent)}
+.hero h1{font-size:clamp(2.4rem,7vw,5rem);font-weight:900;letter-spacing:-.045em;line-height:.98;margin-bottom:24px}
+.hero h1 .fade{color:var(--text-faint)}
+.hero-sub{font-size:clamp(1.05rem,2.3vw,1.4rem);color:var(--text-muted);max-width:56ch;margin-bottom:36px;font-weight:400}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero-note{font-size:.86rem;color:var(--text-faint);margin-top:22px;display:flex;align-items:center;gap:8px}
+.hero-note svg{width:15px;height:15px}
+/* franja de canales en el hero */
+.channel-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:52px}
+.chip{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border-radius:999px;border:1px solid var(--border);background:var(--bg-elevated);font-weight:600;font-size:.9rem;transition:transform .25s var(--ease),border-color .25s}
+.chip:hover{transform:translateY(-3px);border-color:var(--border-strong)}
+.chip i{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;color:#fff}
+.chip i svg{width:13px;height:13px}
+
+/* ============ Reveal ============ */
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+[data-reveal].in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){[data-reveal]{opacity:1!important;transform:none!important}}
+
+/* ============ Cómo funciona ============ */
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative}
+.flow-step{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:30px 26px;position:relative;overflow:hidden}
+.flow-step .num{font-family:var(--mono);font-size:.8rem;color:var(--text-faint);font-weight:600}
+.flow-step .ic{width:52px;height:52px;border-radius:14px;background:var(--bg);border:1px solid var(--border);display:grid;place-items:center;margin:16px 0 18px}
+.flow-step .ic svg{width:24px;height:24px}
+.flow-step h3{font-size:1.22rem;font-weight:700;letter-spacing:-.02em;margin-bottom:9px}
+.flow-step p{color:var(--text-muted);font-size:.97rem}
+.flow-arrow{position:absolute;top:50%;right:-9px;transform:translateY(-50%);z-index:2;color:var(--text-faint);background:var(--bg);border-radius:50%}
+.flow-arrow svg{width:20px;height:20px}
+
+/* ============ Canales ============ */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 26px;transition:transform .3s var(--ease),border-color .3s,background .3s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-4px);border-color:var(--border-strong)}
+.card .glow{position:absolute;top:-40%;right:-30%;width:220px;height:220px;border-radius:50%;filter:blur(60px);opacity:.16;transition:opacity .4s}
+.card:hover .glow{opacity:.3}
+.card-ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;color:#fff;margin-bottom:18px;position:relative;z-index:1}
+.card-ic svg{width:24px;height:24px}
+.card h3{font-size:1.2rem;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.card h3 .tag{font-family:var(--mono);font-size:.62rem;font-weight:600;color:var(--text-faint);border:1px solid var(--border);padding:2px 7px;border-radius:6px;letter-spacing:.04em}
+.card p{color:var(--text-muted);font-size:.96rem;position:relative;z-index:1}
+
+/* ============ Configuración / integraciones (acordeón) ============ */
+.setup-lead{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:36px}
+.mini-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.mini-step{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px}
+.mini-step .n{width:30px;height:30px;border-radius:9px;background:var(--text);color:var(--bg);font-weight:800;font-size:.86rem;display:grid;place-items:center;margin-bottom:12px}
+.mini-step h4{font-size:1rem;font-weight:700;margin-bottom:5px}
+.mini-step p{font-size:.88rem;color:var(--text-muted)}
+.acc{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--surface);margin-bottom:14px;transition:border-color .3s}
+.acc[open]{border-color:var(--border-strong)}
+.acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:22px 24px;font-weight:700;font-size:1.08rem;letter-spacing:-.01em;user-select:none}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary .ch-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:#fff;flex:0 0 auto}
+.acc summary .ch-ic svg{width:20px;height:20px}
+.acc summary .meta{margin-left:auto;display:flex;align-items:center;gap:14px}
+.acc summary .lvl{font-family:var(--mono);font-size:.68rem;font-weight:600;color:var(--text-faint);border:1px solid var(--border);padding:3px 9px;border-radius:7px}
+.acc summary .chev{transition:transform .3s var(--ease);color:var(--text-faint)}
+.acc[open] summary .chev{transform:rotate(180deg)}
+.acc .body{padding:2px 24px 26px;border-top:1px solid var(--border)}
+.acc .body>.intro{color:var(--text-muted);margin:18px 0 22px;font-size:.98rem;max-width:66ch}
+.steps{list-style:none;counter-reset:s;display:grid;gap:2px}
+.steps li{position:relative;padding:16px 0 16px 52px;border-top:1px solid var(--border)}
+.steps li:first-child{border-top:0}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:15px;width:32px;height:32px;border-radius:9px;background:var(--bg);border:1px solid var(--border);display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:.82rem;color:var(--text)}
+.steps li strong{font-weight:700}
+.steps li span{display:block;color:var(--text-muted);font-size:.92rem;margin-top:3px}
+.tip{display:flex;gap:12px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--text);border-radius:10px;padding:14px 16px;margin-top:20px;font-size:.9rem;color:var(--text-muted)}
+.tip svg{width:17px;height:17px;flex:0 0 auto;margin-top:2px;color:var(--text)}
+.tip b{color:var(--text);font-weight:700}
+.note-meta{display:flex;gap:12px;align-items:flex-start;background:color-mix(in srgb,var(--sms) 9%,transparent);border:1px solid color-mix(in srgb,var(--sms) 28%,transparent);border-radius:10px;padding:14px 16px;margin-top:16px;font-size:.9rem;color:var(--text-muted)}
+.note-meta svg{width:17px;height:17px;flex:0 0 auto;margin-top:2px;color:var(--sms)}
+.note-meta b{color:var(--text)}
+
+/* ============ Día a día (grid de funciones) ============ */
+.feat{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.fcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;transition:transform .3s var(--ease),border-color .3s}
+.fcard:hover{transform:translateY(-4px);border-color:var(--border-strong)}
+.fcard .top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.fcard .fic{width:44px;height:44px;border-radius:12px;background:var(--bg);border:1px solid var(--border);display:grid;place-items:center}
+.fcard .fic svg{width:21px;height:21px}
+.fcard h3{font-size:1.12rem;font-weight:700;letter-spacing:-.02em}
+.fcard .role{font-size:.75rem;font-weight:600;color:var(--text-faint);text-transform:uppercase;letter-spacing:.08em}
+.fcard p{color:var(--text-muted);font-size:.94rem;margin-bottom:12px}
+.fcard .use{font-size:.88rem;color:var(--text);display:flex;gap:9px;align-items:flex-start;padding-top:12px;border-top:1px solid var(--border)}
+.fcard .use svg{width:15px;height:15px;flex:0 0 auto;margin-top:4px;color:var(--text-muted)}
+
+/* ============ Asistente (split) ============ */
+.assistant{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
+.assistant .copy h2.title{margin-top:16px}
+.assistant .copy .list{display:grid;gap:16px;margin-top:28px}
+.assistant .copy .list .row{display:flex;gap:15px;align-items:flex-start}
+.assistant .copy .list .row .ri{width:40px;height:40px;border-radius:11px;background:var(--surface);border:1px solid var(--border);display:grid;place-items:center;flex:0 0 auto}
+.assistant .copy .list .row .ri svg{width:19px;height:19px}
+.assistant .copy .list .row h4{font-size:1.02rem;font-weight:700;margin-bottom:3px}
+.assistant .copy .list .row p{color:var(--text-muted);font-size:.94rem}
+/* mockup de chat */
+.chat-demo{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow)}
+.chat-demo .cd-head{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:18px}
+.chat-demo .cd-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#333,#000);display:grid;place-items:center;color:#fff;font-weight:800}
+[data-theme="light"] .chat-demo .cd-av{background:linear-gradient(135deg,#111,#555)}
+.chat-demo .cd-head .who{font-weight:700;font-size:.98rem}
+.chat-demo .cd-head .via{font-size:.76rem;color:var(--text-faint);display:flex;align-items:center;gap:6px;margin-top:2px}
+.chat-demo .cd-head .via .b{width:16px;height:16px;border-radius:5px;display:grid;place-items:center;color:#fff}
+.chat-demo .cd-head .via .b svg{width:10px;height:10px}
+.bubble{max-width:82%;padding:12px 15px;border-radius:16px;font-size:.92rem;margin-bottom:12px;line-height:1.45}
+.bubble.them{background:var(--bg);border:1px solid var(--border);border-bottom-left-radius:5px}
+.bubble.me{background:var(--text);color:var(--bg);margin-left:auto;border-bottom-right-radius:5px}
+.ai-suggest{border:1px dashed var(--border-strong);border-radius:14px;padding:14px;margin-top:6px;background:var(--bg)}
+.ai-suggest .lbl{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--voice);display:flex;align-items:center;gap:7px;margin-bottom:9px}
+.ai-suggest .lbl svg{width:14px;height:14px}
+.ai-suggest p{font-size:.9rem;color:var(--text-muted)}
+.ai-suggest .acts{display:flex;gap:8px;margin-top:12px}
+.ai-suggest .acts button{font:inherit;font-size:.8rem;font-weight:600;padding:8px 14px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer}
+.ai-suggest .acts button.pri{background:var(--text);color:var(--bg);border-color:var(--text)}
+
+/* ============ Privacidad ============ */
+.privacy{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:clamp(32px,5vw,56px)}
+.privacy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;margin-top:32px}
+.pv{display:flex;flex-direction:column;gap:10px}
+.pv .pic{width:46px;height:46px;border-radius:12px;background:var(--bg);border:1px solid var(--border);display:grid;place-items:center}
+.pv .pic svg{width:22px;height:22px}
+.pv h4{font-size:1.05rem;font-weight:700}
+.pv p{color:var(--text-muted);font-size:.93rem}
+
+/* ============ FAQ ============ */
+.faq details{border-bottom:1px solid var(--border)}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:24px 4px;font-weight:600;font-size:1.08rem;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .plus{margin-left:auto;transition:transform .3s var(--ease);color:var(--text-faint);flex:0 0 auto}
+.faq details[open] summary .plus{transform:rotate(45deg)}
+.faq .ans{padding:0 4px 26px;color:var(--text-muted);max-width:72ch;font-size:.98rem}
+
+/* ============ Banda CTA ============ */
+.band{background:var(--text);color:var(--bg);border-radius:var(--radius-lg);padding:clamp(40px,6vw,72px);text-align:center;position:relative;overflow:hidden}
+.band h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-bottom:16px}
+.band p{color:color-mix(in srgb,var(--bg) 65%,var(--text));max-width:52ch;margin:0 auto 30px;font-size:1.08rem}
+.band .btn-primary{background:var(--bg);color:var(--text)}
+.band .btn-primary:hover{box-shadow:0 12px 30px -12px rgba(0,0,0,.4)}
+
+/* ============ Footer ============ */
+.footer{border-top:1px solid var(--border);padding:56px 0 40px;margin-top:24px}
+.footer-top{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start;margin-bottom:40px}
+.footer .brand{margin-bottom:14px}
+.footer-desc{color:var(--text-muted);font-size:.94rem;max-width:38ch}
+.footer-cols{display:flex;gap:clamp(30px,6vw,72px);flex-wrap:wrap}
+.footer-col h5{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-faint);margin-bottom:14px;font-weight:700}
+.footer-col a{display:block;color:var(--text-muted);font-size:.92rem;padding:5px 0;transition:color .2s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;color:var(--text-faint);font-size:.85rem}
+
+/* ============ Responsive ============ */
+@media (max-width:900px){
+  .flow{grid-template-columns:1fr}
+  .flow-arrow{top:auto;bottom:-9px;right:50%;transform:translateX(50%) rotate(90deg)}
+  .assistant{grid-template-columns:1fr}
+  .assistant .visual{order:-1}
+}
+@media (max-width:760px){
+  .nav-links{display:none}
+  .hamburger{display:grid}
+  .nav-actions .btn{display:none}
+}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2.5px solid var(--text);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#topo" class="brand" aria-label="Inicio">
+      <span class="brand-mark"><i data-lucide="messages-square"></i></span>
+      Central de comunicación
+    </a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a class="navlink" href="#como-funciona">Cómo funciona</a>
+      <a class="navlink" href="#canais">Canales</a>
+      <a class="navlink" href="#configurar">Configurar</a>
+      <a class="navlink" href="#dia-a-dia">Día a día</a>
+      <a class="navlink" href="#assistente">Asistente</a>
+      <a class="navlink" href="#faq">Dudas</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="lang-switch" role="group" aria-label="Idioma">
+        <a href="index.html">PT</a>
+        <a href="docs-en.html">EN</a>
+        <a href="docs-es.html" class="active" aria-current="page">ES</a>
+      </div>
+      <button class="icon-btn" id="theme" aria-label="Alternar tema claro y oscuro">
+        <i data-lucide="sun" class="sun"></i><i data-lucide="moon" class="moon"></i>
+      </button>
+      <a class="btn btn-primary" href="#configurar">Empezar</a>
+      <button class="icon-btn hamburger" id="burger" aria-label="Abrir menú" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menú">
+  <a href="#como-funciona">Cómo funciona</a>
+  <a href="#canais">Los canales</a>
+  <a href="#configurar">Configurar integraciones</a>
+  <a href="#dia-a-dia">Día a día</a>
+  <a href="#assistente">El asistente</a>
+  <a href="#privacidade">Privacidad</a>
+  <a href="#faq">Dudas frecuentes</a>
+</nav>
+
+<main id="topo">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <span class="pill"><span class="dot"></span> Tu central de comunicación, a tu manera</span>
+    <h1>Cada conversación,<br>cada canal,<br><span class="fade">un solo lugar.</span></h1>
+    <p class="hero-sub">WhatsApp, llamadas, Instagram, Telegram, SMS y correo llegan juntos a la misma pantalla. Un asistente entiende cada mensaje, lo ordena todo y te ayuda a responder mejor.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#configurar">Empezar ahora <i data-lucide="arrow-right" style="width:17px;height:17px"></i></a>
+      <a class="btn btn-ghost" href="#como-funciona">Ver cómo funciona</a>
+    </div>
+    <p class="hero-note"><i data-lucide="shield-check"></i> Funciona en tu máquina. Nada se envía sin tu aprobación.</p>
+
+    <div class="channel-strip" aria-label="Canales disponibles">
+      <span class="chip"><i style="background:var(--wa)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg></i> WhatsApp</span>
+      <span class="chip"><i style="background:var(--voice)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v18M7 7v10M17 7v10M2 11v2M22 11v2"/></svg></i> Voz</span>
+      <span class="chip"><i style="background:var(--ig)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1.2" fill="currentColor"/></svg></i> Instagram</span>
+      <span class="chip"><i style="background:var(--tg)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 4 3 11l5 2 2 6 3-4 5 4Z"/></svg></i> Telegram</span>
+      <span class="chip"><i style="background:var(--sms)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12Z"/></svg></i> SMS</span>
+      <span class="chip"><i style="background:var(--email)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg></i> Correo</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CÓMO FUNCIONA ===================== -->
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Cómo funciona</span>
+      <h2 class="title">Entran mensajes. Se vuelven conocimiento. Respondes mejor.</h2>
+      <p>No necesitas saber de tecnología. El sistema hace el trabajo pesado por detrás y te entrega todo listo para usar, en tres movimientos sencillos.</p>
+    </div>
+    <div class="flow">
+      <div class="flow-step" data-reveal>
+        <span class="num">01</span>
+        <div class="ic"><i data-lucide="inbox"></i></div>
+        <h3>Todo llega junto</h3>
+        <p>Cada mensaje de cada canal cae en la misma bandeja de entrada. WhatsApp, correo, Instagram y el resto quedan lado a lado, sin que cambies de aplicación.</p>
+        <span class="flow-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+      </div>
+      <div class="flow-step" data-reveal>
+        <span class="num">02</span>
+        <div class="ic"><i data-lucide="sparkles"></i></div>
+        <h3>Se vuelve orden</h3>
+        <p>El asistente lo lee, entiende de qué se trata, junta todo del mismo cliente en un solo contacto y lo guarda en fichas fáciles de encontrar después.</p>
+        <span class="flow-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+      </div>
+      <div class="flow-step" data-reveal>
+        <span class="num">03</span>
+        <div class="ic"><i data-lucide="send-horizontal"></i></div>
+        <h3>Respondes mejor</h3>
+        <p>Con el historial a mano y una respuesta sugerida lista, respondes en el mismo canal o cambias de canal con un clic. Siempre con tu aprobación.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CANALES ===================== -->
+<section id="canais">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Los canales</span>
+      <h2 class="title">Seis formas de hablar. Un solo contacto.</h2>
+      <p>La misma persona te escribe por WhatsApp hoy y por correo mañana. El sistema reconoce que es ella y lo guarda todo junto, en un único historial.</p>
+    </div>
+    <div class="cards">
+      <article class="card" data-reveal>
+        <span class="glow" style="background:var(--wa)"></span>
+        <div class="card-ic" style="background:var(--wa)"><i data-lucide="message-circle"></i></div>
+        <h3>WhatsApp <span class="tag">principal</span></h3>
+        <p>El canal del día a día. Recibe y responde mensajes de texto, multimedia y grupos, con todo el historial guardado y buscable.</p>
+      </article>
+      <article class="card" data-reveal>
+        <span class="glow" style="background:var(--voice)"></span>
+        <div class="card-ic" style="background:var(--voice)"><i data-lucide="phone-call"></i></div>
+        <h3>Voz</h3>
+        <p>Llamadas con una voz natural que atiende, conversa y registra lo que se dijo. Ideal para confirmar, recordar o dar una respuesta rápida.</p>
+      </article>
+      <article class="card" data-reveal>
+        <span class="glow" style="background:var(--ig)"></span>
+        <div class="card-ic" style="background:var(--ig)"><i data-lucide="instagram"></i></div>
+        <h3>Instagram</h3>
+        <p>Los mensajes directos y comentarios de tu perfil se vuelven conversaciones aquí. Quien comentó en la publicación y quien te escribió al direct quedan en el mismo lugar.</p>
+      </article>
+      <article class="card" data-reveal>
+        <span class="glow" style="background:var(--tg)"></span>
+        <div class="card-ic" style="background:var(--tg)"><i data-lucide="send"></i></div>
+        <h3>Telegram</h3>
+        <p>Las conversaciones de Telegram entran a la misma bandeja. Útil para quien tiene clientes o comunidades que prefieren esta aplicación.</p>
+      </article>
+      <article class="card" data-reveal>
+        <span class="glow" style="background:var(--sms)"></span>
+        <div class="card-ic" style="background:var(--sms)"><i data-lucide="message-square"></i></div>
+        <h3>SMS</h3>
+        <p>El clásico mensaje de texto de siempre. Llega y sale por el mismo panel, perfecto para avisos que deben llegar aunque no haya internet.</p>
+      </article>
+      <article class="card" data-reveal>
+        <span class="glow" style="background:var(--email)"></span>
+        <div class="card-ic" style="background:var(--email)"><i data-lucide="mail"></i></div>
+        <h3>Correo</h3>
+        <p>Tus correos aparecen como conversaciones, no como una bandeja llena. Cada intercambio queda ligado al contacto correcto, listo para responder.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONFIGURAR ===================== -->
+<section id="configurar">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Configurar integraciones</span>
+      <h2 class="title">Encender un canal es siempre la misma receta.</h2>
+      <p>No escribes ni una línea de código. Abres la pantalla de integraciones, eliges el canal, pegas las claves que ese servicio te da y activas el interruptor. Listo, la pantalla del canal aparece en el menú.</p>
+    </div>
+
+    <div class="mini-steps" data-reveal style="margin-bottom:44px">
+      <div class="mini-step"><div class="n">1</div><h4>Abre Integraciones</h4><p>En el menú lateral del panel, haz clic en <b>Integraciones</b>.</p></div>
+      <div class="mini-step"><div class="n">2</div><h4>Elige el canal</h4><p>Selecciona WhatsApp, Voz, Instagram, Telegram, SMS o Correo.</p></div>
+      <div class="mini-step"><div class="n">3</div><h4>Pega las claves</h4><p>Copia los datos del servicio y pégalos en los campos indicados.</p></div>
+      <div class="mini-step"><div class="n">4</div><h4>Activa el interruptor</h4><p>Actívalo y la pantalla del canal aparece sola en el menú. Así de simple.</p></div>
+    </div>
+
+    <p class="eyebrow" style="margin-bottom:18px" data-reveal>Paso a paso por canal</p>
+
+    <!-- WhatsApp -->
+    <details class="acc" data-reveal open>
+      <summary>
+        <span class="ch-ic" style="background:var(--wa)"><i data-lucide="message-circle"></i></span>
+        WhatsApp
+        <span class="meta"><span class="lvl">fácil</span><i data-lucide="chevron-down" class="chev"></i></span>
+      </summary>
+      <div class="body">
+        <p class="intro">La forma más directa de empezar. Conectas un número de WhatsApp leyendo un código en la pantalla, igual que cuando abres WhatsApp en la computadora.</p>
+        <ol class="steps">
+          <li><strong>Ten un número aparte a mano</strong><span>Recomendamos un chip solo para el negocio, no el personal. Deja el teléfono cerca.</span></li>
+          <li><strong>Ve a Integraciones y elige WhatsApp</strong><span>Haz clic en conectar. Aparece un código cuadrado (QR) en la pantalla.</span></li>
+          <li><strong>Escanea el código con el teléfono</strong><span>En WhatsApp del teléfono: Dispositivos vinculados, Vincular un dispositivo, y apunta la cámara a la pantalla.</span></li>
+          <li><strong>Listo, se conectó</strong><span>Las conversaciones empiezan a aparecer y el historial se descarga solo.</span></li>
+        </ol>
+        <div class="tip"><i data-lucide="lightbulb"></i><span>El código en pantalla <b>se renueva solo cada medio minuto</b>. Si cambia antes de que lo escanees, no pasa nada: es normal y a propósito, por seguridad. Escanea el que esté activo en ese momento.</span></div>
+      </div>
+    </details>
+
+    <!-- Voz -->
+    <details class="acc" data-reveal>
+      <summary>
+        <span class="ch-ic" style="background:var(--voice)"><i data-lucide="phone-call"></i></span>
+        Voz (llamadas)
+        <span class="meta"><span class="lvl">medio</span><i data-lucide="chevron-down" class="chev"></i></span>
+      </summary>
+      <div class="body">
+        <p class="intro">La voz de las llamadas viene de ElevenLabs, un servicio que convierte texto en habla natural. Creas una cuenta ahí, tomas una clave y la pegas aquí.</p>
+        <ol class="steps">
+          <li><strong>Crea una cuenta en ElevenLabs</strong><span>Entra en elevenlabs.io y regístrate. Hay un plan gratuito para probar.</span></li>
+          <li><strong>Copia tu clave de acceso</strong><span>En el panel de ElevenLabs, busca la API Key en la configuración de la cuenta. Es un texto largo, único y secreto. Cópialo entero.</span></li>
+          <li><strong>Elige una voz</strong><span>Todavía en ElevenLabs, escucha las voces disponibles y anota el nombre o código de la que te gustó.</span></li>
+          <li><strong>Pégala aquí y actívala</strong><span>En Integraciones, elige Voz, pega la clave y la voz elegida, y activa.</span></li>
+        </ol>
+        <div class="tip"><i data-lucide="lightbulb"></i><span>Trata la clave como una contraseña: <b>no la compartas con nadie</b> y no la pegues en conversaciones. Aquí queda guardada con seguridad en tu máquina.</span></div>
+      </div>
+    </details>
+
+    <!-- Instagram -->
+    <details class="acc" data-reveal>
+      <summary>
+        <span class="ch-ic" style="background:var(--ig)"><i data-lucide="instagram"></i></span>
+        Instagram (direct y comentarios)
+        <span class="meta"><span class="lvl">avanzado</span><i data-lucide="chevron-down" class="chev"></i></span>
+      </summary>
+      <div class="body">
+        <p class="intro">Instagram es de Meta (la misma dueña de Facebook y WhatsApp). Para que el sistema lea tus directs y comentarios, Meta exige algunos pasos y una aprobación. Vale la pena, pero sé honesto con el plazo: puede tardar unos días.</p>
+        <ol class="steps">
+          <li><strong>Ten un perfil profesional</strong><span>Tu Instagram debe ser cuenta de empresa o de creador, y estar ligado a una página de Facebook. Puedes cambiarlo en la configuración del propio Instagram.</span></li>
+          <li><strong>Crea una app en Meta</strong><span>En developers.facebook.com, crea una aplicación. Es gratis. Es solo el puente oficial entre Instagram y el sistema.</span></li>
+          <li><strong>Pide los permisos de mensajes</strong><span>En el panel de Meta, activa los permisos de mensajes de Instagram y envíalos a revisión. Meta analiza y aprueba.</span></li>
+          <li><strong>Copia el token de acceso</strong><span>Tras la aprobación, Meta te da un token (una clave larga). Cópialo y pégalo en Integraciones, eligiendo Instagram.</span></li>
+        </ol>
+        <div class="note-meta"><i data-lucide="clock"></i><span><b>Requisito honesto:</b> la aprobación de Meta es obligatoria y no depende de nosotros. Mientras no sale, el canal queda listo pero en espera. En cuanto aprueben, solo lo enciendes.</span></div>
+      </div>
+    </details>
+
+    <!-- Telegram -->
+    <details class="acc" data-reveal>
+      <summary>
+        <span class="ch-ic" style="background:var(--tg)"><i data-lucide="send"></i></span>
+        Telegram
+        <span class="meta"><span class="lvl">fácil</span><i data-lucide="chevron-down" class="chev"></i></span>
+      </summary>
+      <div class="body">
+        <p class="intro">En Telegram hablas con un asistente de la propia aplicación, llamado BotFather, y él te entrega la clave en segundos. Es el canal más rápido de encender después de WhatsApp.</p>
+        <ol class="steps">
+          <li><strong>Abre BotFather en Telegram</strong><span>En la app de Telegram, busca BotFather (con la insignia azul de verificado) e inicia la conversación.</span></li>
+          <li><strong>Pide un bot nuevo</strong><span>Envía el mensaje empezar y luego crear un bot nuevo. Te pregunta un nombre y un usuario. Elígelos y confirma.</span></li>
+          <li><strong>Recibe el token</strong><span>BotFather responde con un token (una secuencia de números y letras). Ese es tu acceso. Copia todo.</span></li>
+          <li><strong>Pégalo aquí y actívalo</strong><span>En Integraciones, elige Telegram, pega el token y activa. La pantalla de Telegram aparece en el menú.</span></li>
+        </ol>
+        <div class="tip"><i data-lucide="lightbulb"></i><span>¿Quieres que el bot lea mensajes de grupos? Pídelo a BotFather en <b>la configuración de privacidad del grupo</b>. Fuera de eso, ya funciona en las conversaciones directas.</span></div>
+      </div>
+    </details>
+
+    <!-- SMS -->
+    <details class="acc" data-reveal>
+      <summary>
+        <span class="ch-ic" style="background:var(--sms)"><i data-lucide="message-square"></i></span>
+        SMS
+        <span class="meta"><span class="lvl">medio</span><i data-lucide="chevron-down" class="chev"></i></span>
+      </summary>
+      <div class="body">
+        <p class="intro">El SMS usa Twilio, una empresa que alquila números de teléfono para enviar y recibir mensajes de texto. Creas una cuenta, tomas un número y tres datos, y los pegas aquí.</p>
+        <ol class="steps">
+          <li><strong>Crea una cuenta en Twilio</strong><span>Entra en twilio.com y regístrate. Hay crédito de prueba para experimentar antes de pagar.</span></li>
+          <li><strong>Consigue un número</strong><span>En el panel, alquila un número de teléfono. Por él saldrán y llegarán los SMS.</span></li>
+          <li><strong>Copia los tres datos</strong><span>En la página inicial de Twilio están el identificador de la cuenta (Account SID), la clave secreta (Auth Token) y el número que alquilaste. Copia los tres.</span></li>
+          <li><strong>Pégalos aquí y actívalo</strong><span>En Integraciones, elige SMS, pega los tres datos y activa.</span></li>
+        </ol>
+        <div class="tip"><i data-lucide="lightbulb"></i><span>Cada SMS enviado tiene un pequeño costo que cobra Twilio. <b>Empieza con el crédito de prueba</b> para sentir el volumen antes de poner tarjeta.</span></div>
+      </div>
+    </details>
+
+    <!-- Correo -->
+    <details class="acc" data-reveal>
+      <summary>
+        <span class="ch-ic" style="background:var(--email)"><i data-lucide="mail"></i></span>
+        Correo (Gmail)
+        <span class="meta"><span class="lvl">avanzado</span><i data-lucide="chevron-down" class="chev"></i></span>
+      </summary>
+      <div class="body">
+        <p class="intro">Para el correo el sistema se conecta con Gmail, de Google. Como implica acceso a tu bandeja, Google pide una configuración y, según el uso, una verificación. Nada complicado, pero exige atención en los pasos.</p>
+        <ol class="steps">
+          <li><strong>Entra en la consola de Google</strong><span>En console.cloud.google.com, crea un proyecto. Es gratis y sirve solo para autorizar el acceso.</span></li>
+          <li><strong>Activa el acceso a Gmail</strong><span>Busca la Gmail API en la lista de servicios y actívala. Eso libera la lectura y el envío de correos de forma oficial.</span></li>
+          <li><strong>Genera las credenciales</strong><span>Crea una credencial del tipo cuenta de servicio u OAuth. Google genera un archivo o un par de claves. Guárdalo con cuidado.</span></li>
+          <li><strong>Autoriza y pégalo aquí</strong><span>En la primera conexión, Google muestra una pantalla pidiendo tu permiso. Acéptalo, y luego pega las credenciales en Integraciones, eligiendo Correo.</span></li>
+        </ol>
+        <div class="note-meta"><i data-lucide="clock"></i><span><b>Requisito honesto:</b> Google puede pedir una verificación del proyecto si vas a usarlo con muchas direcciones. Para uso propio o de un equipo pequeño, suele aprobar de inmediato.</span></div>
+      </div>
+    </details>
+
+    <div class="tip" data-reveal style="max-width:none;margin-top:26px"><i data-lucide="check-check"></i><span>Después de encender cualquier canal, aparece en el menú lateral del panel <b>al instante</b>, y las conversaciones empiezan a llegar a la bandeja de entrada única. Puedes encender un canal hoy y otro el mes que viene, a tu ritmo.</span></div>
+  </div>
+</section>
+
+<!-- ===================== DÍA A DÍA ===================== -->
+<section id="dia-a-dia">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Día a día</span>
+      <h2 class="title">Nueve herramientas, todas en lenguaje de gente.</h2>
+      <p>Cada pantalla del panel tiene un propósito claro. Aquí está lo que hace cada una y cómo usarla, sin rodeos.</p>
+    </div>
+    <div class="feat">
+      <article class="fcard" data-reveal>
+        <div class="top"><div class="fic"><i data-lucide="message-circle"></i></div><div><span class="role">Central</span><h3>Conversaciones</h3></div></div>
+        <p>La bandeja de entrada única. Todos los canales lado a lado, cada mensaje con un sello que muestra de dónde vino.</p>
+        <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Filtra por canal con un clic y responde desde dentro de la propia conversación.</span></div>
+      </article>
+      <article class="fcard" data-reveal>
+        <div class="top"><div class="fic"><i data-lucide="search"></i></div><div><span class="role">Encontrar</span><h3>Buscar</h3></div></div>
+        <p>Busca por palabra exacta y también por significado. Escribe más o menos lo que recuerdas y lo encuentra, aunque sea con otras palabras.</p>
+        <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Escribe el asunto ("aquel presupuesto de junio") y deja que la búsqueda haga el resto.</span></div>
+      </article>
+      <article class="fcard" data-reveal>
+        <div class="top"><div class="fic"><i data-lucide="contact"></i></div><div><span class="role">Personas</span><h3>Contactos</h3></div></div>
+        <p>La lista completa de quién habla contigo, en una tabla rica con canal, última conversación y etapa de la atención.</p>
+        <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Haz clic en un contacto para ver todo lo suyo reunido, de todos los canales.</span></div>
+      </article>
+      <article class="fcard" data-reveal>
+        <div class="top"><div class="fic"><i data-lucide="git-fork"></i></div><div><span class="role">Relaciones</span><h3>CRM en grafo</h3></div></div>
+        <p>Un mapa visual que muestra cómo se conectan personas, empresas y asuntos. Ve quién recomendó a quién y quién habla con quién.</p>
+        <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Arrastra los puntos y haz clic para abrir la ficha de cada uno.</span></div>
+      </article>
+      <article class="fcard" data-reveal>
+        <div class="top"><div class="fic"><i data-lucide="square-kanban"></i></div><div><span class="role">Flujo</span><h3>Embudo</h3></div></div>
+        <p>Un tablero de columnas para seguir la atención: nuevo, en conversación, propuesta, cerrado. Estilo post-it que se arrastra.</p>
+        <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Arrastra la tarjeta del contacto de una columna a la siguiente conforme avanza.</span></div>
+      </article>
+      <article class="fcard" data-reveal>
+        <div class="top"><div class="fic"><i data-lucide="trending-up"></i></div><div><span class="role">Resultados</span><h3>Conversión</h3></div></div>
+        <p>Un panel con números claros: cuántos llegaron, cuántos se volvieron clientes y dónde se detiene la gente en el camino.</p>
+        <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Mira los gráficos para entender qué está funcionando y qué se trabó.</span></div>
+      </article>
+      <article class="fcard" data-reveal>
+        <div class="top"><div class="fic"><i data-lucide="send"></i></div><div><span class="role">Retomar</span><h3>Seguimientos</h3></div></div>
+        <p>Recordatorios de "volver a hablar con fulano". El sistema prepara el mensaje y espera tu sí antes de enviar.</p>
+        <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Revisa lo que sugirió y aprueba, edita o descarta.</span></div>
+      </article>
+      <article class="fcard" data-reveal>
+        <div class="top"><div class="fic"><i data-lucide="newspaper"></i></div><div><span class="role">Panorama</span><h3>Resúmenes</h3></div></div>
+        <p>Resúmenes automáticos de lo que pasó, para que no tengas que leerlo todo. Lo esencial de cada conversación en pocas líneas.</p>
+        <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Lee el resumen del día y abre solo lo que necesita de ti.</span></div>
+      </article>
+      <article class="fcard" data-reveal>
+        <div class="top"><div class="fic"><i data-lucide="users"></i></div><div><span class="role">Colectivo</span><h3>Grupos</h3></div></div>
+        <p>Inteligencia sobre tus grupos de WhatsApp: quién participa, qué se habla y qué merece tu atención.</p>
+        <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Elige qué grupos seguir e ignora el ruido del resto.</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ASISTENTE ===================== -->
+<section id="assistente">
+  <div class="wrap assistant">
+    <div class="copy" data-reveal>
+      <span class="eyebrow">El asistente</span>
+      <h2 class="title">Un ayudante que lo leyó todo antes que tú.</h2>
+      <p class="section-head" style="margin:0;padding:0;color:var(--text-muted)">Piensa en él como un empleado atento que nunca olvida nada. Acompaña cada conversación y deja el siguiente paso listo para tu sí.</p>
+      <div class="list">
+        <div class="row"><div class="ri"><i data-lucide="book-open-text"></i></div><div><h4>Lee y entiende</h4><p>Sigue cada mensaje de cada canal y capta lo que la persona quiere, aunque sea breve o confusa.</p></div></div>
+        <div class="row"><div class="ri"><i data-lucide="tags"></i></div><div><h4>Ordena y clasifica</h4><p>Coloca cada conversación en el contacto correcto, marca el asunto y actualiza la etapa en el embudo, solo.</p></div></div>
+        <div class="row"><div class="ri"><i data-lucide="pencil-line"></i></div><div><h4>Sugiere la respuesta</h4><p>Escribe un borrador listo en el tono de la conversación. Lo lees, lo ajustas si quieres y apruebas. Nada sale sin ti.</p></div></div>
+        <div class="row"><div class="ri"><i data-lucide="repeat"></i></div><div><h4>Cambia de canal cuando tiene sentido</h4><p>¿Lo recibiste por Instagram pero prefieres responder por correo? Continúa la misma conversación en el canal que elijas.</p></div></div>
+      </div>
+    </div>
+    <div class="visual" data-reveal>
+      <div class="chat-demo" role="img" aria-label="Ejemplo de conversación con sugerencia del asistente">
+        <div class="cd-head">
+          <div class="cd-av">M</div>
+          <div>
+            <div class="who">Marina Costa</div>
+            <div class="via">llegó por <span class="b" style="background:var(--ig)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/></svg></span> Instagram</div>
+          </div>
+        </div>
+        <div class="bubble them">¡Hola! Vi su publicación. ¿Todavía se puede aprovechar el precio de lanzamiento?</div>
+        <div class="bubble me">¡Hola Marina! Sí, hasta el viernes. ¿Quieres que te envíe los detalles por correo?</div>
+        <div class="bubble them">Por correo es perfecto 🙌</div>
+        <div class="ai-suggest">
+          <div class="lbl"><i data-lucide="sparkles"></i> Sugerencia del asistente</div>
+          <p>Continuar por <b>correo</b>: enviar la lista de precios de lanzamiento con el plazo del viernes destacado. Contacto ya reconocido como Marina.</p>
+          <div class="acts"><button class="pri">Aprobar y enviar</button><button>Editar</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRIVACIDAD ===================== -->
+<section id="privacidade">
+  <div class="wrap">
+    <div class="privacy" data-reveal>
+      <span class="eyebrow">Privacidad y seguridad</span>
+      <h2 class="title" style="margin-top:16px">Tus conversaciones son tuyas. Punto.</h2>
+      <p style="color:var(--text-muted);max-width:62ch">Este es un sistema que trabaja para ti, en tu máquina. Tú mandas en cada envío y nada pasa a tus espaldas.</p>
+      <div class="privacy-grid">
+        <div class="pv"><div class="pic"><i data-lucide="hard-drive"></i></div><h4>Funciona en tu máquina</h4><p>El sistema vive en tu computadora. Tus mensajes no pasean por servidores de terceros para funcionar.</p></div>
+        <div class="pv"><div class="pic"><i data-lucide="key-round"></i></div><h4>Claves bien guardadas</h4><p>Las claves de los canales quedan almacenadas con seguridad y nunca aparecen en las conversaciones ni en los informes.</p></div>
+        <div class="pv"><div class="pic"><i data-lucide="hand"></i></div><h4>Tú apruebas los envíos</h4><p>Los seguimientos y las respuestas automáticas solo salen después de tu sí. El asistente sugiere, tú decides.</p></div>
+        <div class="pv"><div class="pic"><i data-lucide="eye"></i></div><h4>Todo queda registrado</h4><p>Cada acción tiene su registro. Siempre puedes mirar atrás y ver qué se envió, cuándo y a quién.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Dudas frecuentes</span>
+      <h2 class="title">Preguntas que todo el mundo hace.</h2>
+    </div>
+    <div class="faq" data-reveal>
+      <details open><summary>¿Necesito saber programar para usarlo?<i data-lucide="plus" class="plus"></i></summary><div class="ans">No. Solo trabajas en el panel, haciendo clic y pegando. Las claves que piden los servicios son textos que copias de un sitio y pegas aquí. Ningún código, ninguna terminal.</div></details>
+      <details><summary>¿Tengo que encender todos los canales de una vez?<i data-lucide="plus" class="plus"></i></summary><div class="ans">Para nada. Empieza por WhatsApp, que es el más rápido, y enciende los demás cuando quieras. Cada canal es independiente y aparece en el menú apenas lo activas.</div></details>
+      <details><summary>¿Por qué Instagram y el correo tardan más?<i data-lucide="plus" class="plus"></i></summary><div class="ans">Porque Meta (Instagram) y Google (correo) exigen una autorización oficial antes de liberar el acceso. Eso te protege a ti y a tus contactos. El paso a paso está en la sección de configuración, y la espera es de esas empresas, no del sistema.</div></details>
+      <details><summary>¿El asistente responde solo sin que yo lo vea?<i data-lucide="plus" class="plus"></i></summary><div class="ans">Prepara la respuesta, pero el envío depende de tu aprobación. Mantienes el control de todo lo que sale en tu nombre.</div></details>
+      <details><summary>¿La misma persona que me escribe en canales distintos se vuelve contactos separados?<i data-lucide="plus" class="plus"></i></summary><div class="ans">No. El sistema reconoce que es la misma persona y lo junta todo en un solo contacto. Ves el historial completo, venga de WhatsApp, del correo o de Instagram.</div></details>
+      <details><summary>¿Cuesta dinero usar los canales?<i data-lucide="plus" class="plus"></i></summary><div class="ans">El panel es tuyo. Algunos servicios por detrás tienen costo propio: Twilio cobra por SMS, ElevenLabs cobra por las voces según el plan. WhatsApp, Telegram, Instagram y correo tienen caminos gratuitos para empezar. Siempre puedes probar antes de gastar.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BANDA CTA ===================== -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="band" data-reveal>
+      <h2>¿Listo para reunir todo en un solo lugar?</h2>
+      <p>Abre el panel, ve a Integraciones y enciende tu primer canal. En pocos minutos las conversaciones empiezan a llegar.</p>
+      <a class="btn btn-primary" href="#configurar">Encender mi primer canal <i data-lucide="arrow-right" style="width:17px;height:17px"></i></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="#topo" class="brand"><span class="brand-mark"><i data-lucide="messages-square"></i></span> Central de comunicación</a>
+        <p class="footer-desc">Cada conversación, cada canal, un solo lugar, con un asistente que lo entiende todo.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>El sistema</h5>
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#canais">Los canales</a>
+          <a href="#assistente">El asistente</a>
+        </div>
+        <div class="footer-col">
+          <h5>Usar</h5>
+          <a href="#configurar">Configurar</a>
+          <a href="#dia-a-dia">Día a día</a>
+          <a href="#faq">Dudas</a>
+        </div>
+        <div class="footer-col">
+          <h5>Confianza</h5>
+          <a href="#privacidade">Privacidad</a>
+          <a href="#privacidade">Seguridad</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Documentación del usuario · hecha para quien nunca programó.</span>
+      <span>Funciona en tu máquina · tú tienes el control</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var doc=document, root=doc.documentElement;
+
+  // ---- Tema (persistente) ----
+  try{ var saved=localStorage.getItem("docs-theme"); if(saved) root.setAttribute("data-theme",saved); }catch(e){}
+  var themeBtn=doc.getElementById("theme");
+  if(themeBtn){ themeBtn.addEventListener("click",function(){
+    var next=root.getAttribute("data-theme")==="dark"?"light":"dark";
+    root.setAttribute("data-theme",next);
+    try{ localStorage.setItem("docs-theme",next); }catch(e){}
+  });}
+
+  // ---- Menú móvil ----
+  var burger=doc.getElementById("burger"), menu=doc.getElementById("mobileMenu");
+  if(burger&&menu){
+    burger.addEventListener("click",function(){
+      var open=menu.classList.toggle("open");
+      burger.setAttribute("aria-expanded",open?"true":"false");
+    });
+    menu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click",function(){
+      menu.classList.remove("open"); burger.setAttribute("aria-expanded","false");
+    });});
+  }
+
+  // ---- Barra de progreso + nav scrolled ----
+  var nav=doc.getElementById("nav"), bar=doc.getElementById("progress");
+  function onScroll(){
+    var h=doc.documentElement, max=h.scrollHeight-h.clientHeight;
+    var p=max>0?(h.scrollTop/max)*100:0;
+    if(bar) bar.style.width=p+"%";
+    if(nav) nav.classList.toggle("scrolled",h.scrollTop>8);
+  }
+  window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
+
+  // ---- Reveal on scroll (IntersectionObserver, robusto) ----
+  var els=[].slice.call(doc.querySelectorAll("[data-reveal]"));
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+    },{rootMargin:"0px 0px -8% 0px",threshold:.12});
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add("in"); }); }
+
+  // ---- Nav activo por sección ----
+  var links=[].slice.call(doc.querySelectorAll(".nav-links .navlink"));
+  var sections=links.map(function(l){ return doc.querySelector(l.getAttribute("href")); }).filter(Boolean);
+  if("IntersectionObserver" in window && sections.length){
+    var so=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          var id="#"+en.target.id;
+          links.forEach(function(l){ l.classList.toggle("active",l.getAttribute("href")===id); });
+        }
+      });
+    },{rootMargin:"-45% 0px -50% 0px"});
+    sections.forEach(function(s){ so.observe(s); });
+  }
+
+  // ---- Iconos lucide (con una pequeña espera de carga) ----
+  function drawIcons(){ if(window.lucide&&window.lucide.createIcons){ window.lucide.createIcons(); } }
+  if(window.lucide){ drawIcons(); } else { window.addEventListener("load",drawIcons); }
+
+  // ---- Realce del hero vía GSAP (opcional, protegido) ----
+  window.addEventListener("load",function(){
+    if(!window.gsap) return;
+    var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+    if(reduce) return;
+    gsap.from(".hero .pill,.hero h1,.hero-sub,.hero-cta,.hero-note",{y:22,opacity:0,duration:.8,ease:"power3.out",stagger:.08});
+    gsap.from(".channel-strip .chip",{y:16,opacity:0,duration:.5,ease:"power2.out",stagger:.05,delay:.35});
+  });
+})();
+</script>
+</body>
+</html>
