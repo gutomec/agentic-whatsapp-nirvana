@@ -303,6 +303,7 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
     <nav class="nav-links" aria-label="Sections">
       <a class="navlink" href="#como-funciona">How it works</a>
       <a class="navlink" href="#canais">Channels</a>
+      <a class="navlink" href="#comece">Start</a>
       <a class="navlink" href="#configurar">Set up</a>
       <a class="navlink" href="#dia-a-dia">Day to day</a>
       <a class="navlink" href="#assistente">Assistant</a>
@@ -327,6 +328,7 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
 <nav class="mobile-menu" id="mobileMenu" aria-label="Menu">
   <a href="#como-funciona">How it works</a>
   <a href="#canais">The channels</a>
+  <a href="#comece">Get started in 3 steps</a>
   <a href="#configurar">Set up integrations</a>
   <a href="#dia-a-dia">Day to day</a>
   <a href="#assistente">The assistant</a>
@@ -380,7 +382,7 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
         <span class="num">02</span>
         <div class="ic"><i data-lucide="sparkles"></i></div>
         <h3>It gets organized</h3>
-        <p>The assistant reads it, understands what it's about, gathers everything from the same customer into one contact and files it in cards that are easy to find later.</p>
+        <p>The assistant reads every message, turns it into tidy text, tags the topic and gathers everything from the same customer into one contact. It's kept in a map of relationships it checks in milliseconds to reply with context.</p>
         <span class="flow-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
       </div>
       <div class="flow-step" data-reveal>
@@ -418,7 +420,7 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
         <span class="glow" style="background:var(--ig)"></span>
         <div class="card-ic" style="background:var(--ig)"><i data-lucide="instagram"></i></div>
         <h3>Instagram</h3>
-        <p>Direct messages and comments from your profile become conversations here. Whoever commented on a post and whoever slid into your DMs end up in the same place.</p>
+        <p>Direct messages and comments from your profile become conversations here. You can even set a rule that sends an automatic DM to anyone who comments an agreed word on your post.</p>
       </article>
       <article class="card" data-reveal>
         <span class="glow" style="background:var(--tg)"></span>
@@ -442,6 +444,39 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
   </div>
 </section>
 
+<!-- ===================== GET STARTED IN 3 STEPS ===================== -->
+<section id="comece">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Get started in 3 steps</span>
+      <h2 class="title">From zero to your first conversation in minutes.</h2>
+      <p>The recipe is the same for any channel. Register the key and turn it on, and the channel's screen is born in the menu right away.</p>
+    </div>
+    <div class="flow">
+      <div class="flow-step" data-reveal>
+        <span class="num">01</span>
+        <div class="ic"><i data-lucide="key-round"></i></div>
+        <h3>Register the key</h3>
+        <p>Open Integrations, pick the channel and paste the keys the service gives you. They're kept encrypted on your machine, never in plain text.</p>
+        <span class="flow-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+      </div>
+      <div class="flow-step" data-reveal>
+        <span class="num">02</span>
+        <div class="ic"><i data-lucide="toggle-right"></i></div>
+        <h3>Turn the channel on</h3>
+        <p>Flip the switch. The system recognizes the key on the spot, without reloading the page or restarting a thing.</p>
+        <span class="flow-arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+      </div>
+      <div class="flow-step" data-reveal>
+        <span class="num">03</span>
+        <div class="ic"><i data-lucide="panels-top-left"></i></div>
+        <h3>The screen appears</h3>
+        <p>The channel's screen is born in the side menu and conversations start landing in the single inbox. On WhatsApp, the only extra step is pairing the number by scanning the code.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== SET UP ===================== -->
 <section id="configurar">
   <div class="wrap">
@@ -457,6 +492,8 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
       <div class="mini-step"><div class="n">3</div><h4>Paste the keys</h4><p>Copy the details from the service and paste them into the fields shown.</p></div>
       <div class="mini-step"><div class="n">4</div><h4>Flip the switch</h4><p>Turn it on and the channel's screen appears in the menu on its own. Simple as that.</p></div>
     </div>
+
+    <div class="tip" data-reveal style="max-width:none;margin:0 0 44px"><i data-lucide="shield-check"></i><span>What works the magic: the keys go into an <b>encrypted vault on your machine</b> and never sit in plain text. When you turn the channel on, the system recognizes the key and <b>reveals that channel's screen on its own</b>, no reload. Register the key, the screen appears.</span></div>
 
     <p class="eyebrow" style="margin-bottom:18px" data-reveal>Step by step, channel by channel</p>
 
@@ -487,14 +524,14 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
         <span class="meta"><span class="lvl">medium</span><i data-lucide="chevron-down" class="chev"></i></span>
       </summary>
       <div class="body">
-        <p class="intro">The voice for calls comes from ElevenLabs, a service that turns text into natural speech. You create an account there, grab a key and paste it here.</p>
+        <p class="intro">Calls bring together two pieces. The voice comes from ElevenLabs, which turns text into natural speech. The phone line comes from Twilio, which actually dials. You build a voice agent in ElevenLabs, set what it says, and paste both keys here.</p>
         <ol class="steps">
-          <li><strong>Create an ElevenLabs account</strong><span>Go to elevenlabs.io and sign up. There's a free plan to try it out.</span></li>
-          <li><strong>Copy your access key</strong><span>In the ElevenLabs panel, look for the API Key in your account settings. It's a long, unique, secret string. Copy the whole thing.</span></li>
-          <li><strong>Pick a voice</strong><span>Still in ElevenLabs, listen to the available voices and note the name or code of the one you liked.</span></li>
-          <li><strong>Paste it here and turn it on</strong><span>In Integrations, pick Voice, paste the key and the chosen voice, and activate.</span></li>
+          <li><strong>Create an ElevenLabs account</strong><span>Go to elevenlabs.io and sign up. There's a free plan to try it out. Keep the API key, a long, secret string.</span></li>
+          <li><strong>Build a voice agent</strong><span>In ElevenLabs, create an agent, pick the voice and write two instructions: the opening one, which it says when the call starts, and the conversation one, which guides how it replies.</span></li>
+          <li><strong>Connect Twilio</strong><span>Twilio gives you the number that places the call. Grab its credentials. If you already turned on SMS, they're the same ones.</span></li>
+          <li><strong>Paste it here and turn it on</strong><span>In Integrations, pick Voice, paste the ElevenLabs key, the agent and the Twilio credentials, and activate.</span></li>
         </ol>
-        <div class="tip"><i data-lucide="lightbulb"></i><span>Treat the key like a password: <b>don't share it with anyone</b> and don't paste it into chats. Here it's stored safely on your machine.</span></div>
+        <div class="tip"><i data-lucide="file-text"></i><span>Each call becomes a <b>transcribed conversation</b> inside the system, just like a text message. If the person prefers, you can <b>carry on by WhatsApp</b> from where the call left off.</span></div>
       </div>
     </details>
 
@@ -514,6 +551,7 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
           <li><strong>Copy the access token</strong><span>Once approved, Meta gives you a token (a long key). Copy it and paste it into Integrations, choosing Instagram.</span></li>
         </ol>
         <div class="note-meta"><i data-lucide="clock"></i><span><b>An honest prerequisite:</b> Meta's approval is mandatory and out of our hands. Until it comes through, the channel is ready but on hold. As soon as it's approved, you just turn it on.</span></div>
+        <div class="tip"><i data-lucide="wand-2"></i><span>Once it's on, you can set a <b>comment-to-DM rule</b>: anyone who comments an agreed word on your post automatically gets a direct message. Remember that Instagram only lets you reply to a DM within <b>24 hours</b> of the person's last message.</span></div>
       </div>
     </details>
 
@@ -544,7 +582,7 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
         <span class="meta"><span class="lvl">medium</span><i data-lucide="chevron-down" class="chev"></i></span>
       </summary>
       <div class="body">
-        <p class="intro">SMS uses Twilio, a company that rents out phone numbers to send and receive text messages. You create an account, grab a number and three details, and paste them here.</p>
+        <p class="intro">SMS uses Twilio, the same company behind voice calls. If you already turned on the Voice channel, you reuse the Twilio credentials and just pick a sender number. If not, you create the account, grab a number and three details, and paste them here.</p>
         <ol class="steps">
           <li><strong>Create a Twilio account</strong><span>Go to twilio.com and sign up. There's trial credit to experiment before you pay.</span></li>
           <li><strong>Get a number</strong><span>In the panel, rent a phone number. That's what your SMS will go out from and come in on.</span></li>
@@ -552,6 +590,7 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
           <li><strong>Paste them here and turn it on</strong><span>In Integrations, pick SMS, paste the three details and activate.</span></li>
         </ol>
         <div class="tip"><i data-lucide="lightbulb"></i><span>Every SMS you send has a small cost charged by Twilio. <b>Start with the trial credit</b> to get a feel for the volume before you add a card.</span></div>
+        <div class="note-meta"><i data-lucide="hand"></i><span><b>Automatic opt-out:</b> anyone who replies STOP stops getting your messages right away, as good practice requires. The system respects and logs that on its own.</span></div>
       </div>
     </details>
 
@@ -571,6 +610,7 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
           <li><strong>Authorize and paste it here</strong><span>On the first connection, Google shows a screen asking for your permission. Accept it, then paste the credentials into Integrations, choosing Email.</span></li>
         </ol>
         <div class="note-meta"><i data-lucide="clock"></i><span><b>An honest prerequisite:</b> Google may ask for a project review if you're going to use it with many addresses. For personal use or a small team, it usually clears right away.</span></div>
+        <div class="tip"><i data-lucide="inbox"></i><span>Each email exchange becomes a <b>threaded conversation</b>, tied to the right contact. You choose between <b>simple mode</b>, which checks the inbox every so often, and <b>instant mode</b>, which receives the moment the email arrives.</span></div>
       </div>
     </details>
 
@@ -589,17 +629,17 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
     <div class="feat">
       <article class="fcard" data-reveal>
         <div class="top"><div class="fic"><i data-lucide="message-circle"></i></div><div><span class="role">Hub</span><h3>Conversations</h3></div></div>
-        <p>The single inbox. Every channel side by side, each message with a badge showing where it came from.</p>
+        <p>The single inbox. Every channel side by side, each conversation carrying the colored icon of the channel it came from.</p>
         <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Filter by channel with one click and reply from inside the conversation itself.</span></div>
       </article>
       <article class="fcard" data-reveal>
         <div class="top"><div class="fic"><i data-lucide="search"></i></div><div><span class="role">Find</span><h3>Search</h3></div></div>
-        <p>Searches by exact word and also by meaning. Type roughly what you remember and it finds it, even in different words.</p>
+        <p>Searches by exact word and also by meaning, mixing the two. Type roughly what you remember and it finds it, even in different words. It runs 100% on your machine and works even without internet.</p>
         <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Write the topic ("that quote from June") and let the search do the rest.</span></div>
       </article>
       <article class="fcard" data-reveal>
         <div class="top"><div class="fic"><i data-lucide="contact"></i></div><div><span class="role">People</span><h3>Contacts</h3></div></div>
-        <p>The full list of who talks to you, in a rich table with channel, last conversation and stage of the deal.</p>
+        <p>The full list of who talks to you, in a rich table you shape: show or hide columns and filter by what matters at the moment.</p>
         <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Click a contact to see everything about them gathered, from every channel.</span></div>
       </article>
       <article class="fcard" data-reveal>
@@ -609,27 +649,27 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
       </article>
       <article class="fcard" data-reveal>
         <div class="top"><div class="fic"><i data-lucide="square-kanban"></i></div><div><span class="role">Flow</span><h3>Funnel</h3></div></div>
-        <p>A board of columns to track the deal: new, in conversation, proposal, closed. Sticky-note style you can drag.</p>
-        <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Drag the contact's card from one column to the next as it moves forward.</span></div>
+        <p>A board of columns driven by the agent: it reads the conversation's intent and places each contact in the right column on its own. An optional feature, turn it on only if you want.</p>
+        <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Define what moves a contact to each column and what happens when they land there.</span></div>
       </article>
       <article class="fcard" data-reveal>
         <div class="top"><div class="fic"><i data-lucide="trending-up"></i></div><div><span class="role">Results</span><h3>Conversion</h3></div></div>
-        <p>A dashboard with clear numbers: how many came in, how many became customers and where people drop off along the way.</p>
+        <p>A dashboard with clear numbers: how many came in, how many became customers and where people stop, with colorful charts broken down by channel.</p>
         <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Look at the charts to understand what's working and what got stuck.</span></div>
       </article>
       <article class="fcard" data-reveal>
         <div class="top"><div class="fic"><i data-lucide="send"></i></div><div><span class="role">Reach-outs</span><h3>Follow-ups</h3></div></div>
-        <p>Reminders to "check back in with so-and-so". The system drafts the message and waits for your yes before sending.</p>
+        <p>Reminders to check back in with someone. The system writes the draft, waits for your yes to send and then keeps an eye on whether the person replied.</p>
         <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Review what it suggested and approve, edit or discard it.</span></div>
       </article>
       <article class="fcard" data-reveal>
         <div class="top"><div class="fic"><i data-lucide="newspaper"></i></div><div><span class="role">Overview</span><h3>Summaries</h3></div></div>
-        <p>Automatic summaries of what happened, so you don't have to read everything. The gist of each conversation in a few lines.</p>
+        <p>Automatic summaries of what happened, so you don't have to read everything. Great for a busy group: hours of chat turn into a few lines, written in a voice of their own that signs off at the bottom.</p>
         <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Read the daily summary and open only what actually needs you.</span></div>
       </article>
       <article class="fcard" data-reveal>
         <div class="top"><div class="fic"><i data-lucide="users"></i></div><div><span class="role">Collective</span><h3>Groups</h3></div></div>
-        <p>Intelligence about your WhatsApp groups: who takes part, what's being said and what deserves your attention.</p>
+        <p>Intelligence about your WhatsApp groups, with a menu of actions per group: choose the agent's mode, the visibility, generate or schedule a summary, see stats and organize with tags.</p>
         <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Choose which groups to follow and tune out the noise from the rest.</span></div>
       </article>
     </div>
@@ -683,6 +723,7 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
         <div class="pv"><div class="pic"><i data-lucide="hard-drive"></i></div><h4>Runs on your machine</h4><p>The system lives on your computer. Your messages don't wander through third-party servers to work.</p></div>
         <div class="pv"><div class="pic"><i data-lucide="key-round"></i></div><h4>Keys kept safe</h4><p>The channel keys are stored securely and never show up in conversations or reports.</p></div>
         <div class="pv"><div class="pic"><i data-lucide="hand"></i></div><h4>You approve the sends</h4><p>Follow-ups and automatic replies only go out after your yes. The assistant suggests, you decide.</p></div>
+        <div class="pv"><div class="pic"><i data-lucide="moon-star"></i></div><h4>Human pace, no overdoing it</h4><p>On WhatsApp, sends respect quiet hours and a pace close to a real person's. That protects your number from blocks and stays on at all times.</p></div>
         <div class="pv"><div class="pic"><i data-lucide="eye"></i></div><h4>Everything is logged</h4><p>Every action has its record. You can always look back and see what was sent, when and to whom.</p></div>
       </div>
     </div>
@@ -702,7 +743,10 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
       <details><summary>Why do Instagram and email take longer?<i data-lucide="plus" class="plus"></i></summary><div class="ans">Because Meta (Instagram) and Google (email) require an official authorization before they grant access. That protects you and your contacts. The step by step is in the setup section, and the wait is on those companies, not on the system.</div></details>
       <details><summary>Does the assistant reply on its own without me seeing?<i data-lucide="plus" class="plus"></i></summary><div class="ans">It drafts the reply, but sending depends on your approval. You stay in control of everything that goes out in your name.</div></details>
       <details><summary>Does the same person messaging on different channels become separate contacts?<i data-lucide="plus" class="plus"></i></summary><div class="ans">No. The system recognizes it's the same person and merges everything into one contact. You see the full history, whether it came from WhatsApp, email or Instagram.</div></details>
-      <details><summary>Does it cost money to use the channels?<i data-lucide="plus" class="plus"></i></summary><div class="ans">The panel is yours. Some services behind it have their own cost: Twilio charges per SMS, ElevenLabs charges for the voices depending on the plan. WhatsApp, Telegram, Instagram and email have free paths to get started. There's always a way to try before you spend.</div></details>
+      <details><summary>Does it cost money to use the channels?<i data-lucide="plus" class="plus"></i></summary><div class="ans">The panel is yours. Some services behind it have their own cost: Twilio charges per SMS and per call, ElevenLabs charges for the voices depending on the plan. WhatsApp, Telegram, Instagram and email have free paths to get started. There's always a way to try before you spend.</div></details>
+      <details><summary>Does my data go to the cloud?<i data-lucide="plus" class="plus"></i></summary><div class="ans">Not to work. The system runs on your computer and the history stays with you. Each channel's services (WhatsApp, Twilio, Google) only see what passes through them, just as happens today when you use each one. The organizing, the search and the cards are local.</div></details>
+      <details><summary>Does it work on my phone?<i data-lucide="plus" class="plus"></i></summary><div class="ans">The panel was designed for the computer, which is where the system runs. You open it in the browser to keep up and set things up comfortably. It keeps working even with the tab closed, as long as the computer is on.</div></details>
+      <details><summary>Is there a risk of WhatsApp blocking my number?<i data-lucide="plus" class="plus"></i></summary><div class="ans">The system lowers that risk with a quiet-hours lock and a sending pace close to a human's, both always on. Even so, use a number dedicated to the business, not your personal one, and start slowly.</div></details>
     </div>
   </div>
 </section>
