@@ -287,6 +287,26 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
 }
 .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 :focus-visible{outline:2.5px solid var(--text);outline-offset:3px;border-radius:4px}
+
+/* ============ Demos (vídeos de produto) ============ */
+.demo-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.demo{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:border-color .3s var(--ease),transform .3s var(--ease)}
+.demo:hover{border-color:var(--border-strong);transform:translateY(-3px)}
+.demo-frame{position:relative;aspect-ratio:16/9;background:var(--bg);overflow:hidden}
+.demo-frame video{width:100%;height:100%;display:block;object-fit:cover;background:var(--bg)}
+.demo-toggle{position:absolute;inset:0;margin:auto;width:58px;height:58px;border-radius:50%;border:1px solid var(--border-strong);background:color-mix(in srgb,var(--bg) 68%,transparent);backdrop-filter:blur(6px);color:var(--text);display:grid;place-items:center;cursor:pointer;opacity:1;transition:opacity .25s var(--ease),transform .2s var(--ease);z-index:2}
+.demo-toggle svg{width:23px;height:23px}
+.demo-toggle:hover{transform:scale(1.06);border-color:var(--text)}
+.demo-frame.playing .demo-toggle{opacity:0}
+.demo-frame.playing:hover .demo-toggle{opacity:1}
+.demo-frame .ic-pause{display:none}
+.demo-frame.playing .ic-play{display:none}
+.demo-frame.playing .ic-pause{display:block}
+.demo figcaption{padding:14px 18px;font-size:.92rem;color:var(--text-muted);border-top:1px solid var(--border)}
+.demo figcaption b{color:var(--text);font-weight:700}
+.demo-featured{margin-top:clamp(40px,6vw,64px)}
+.demo-featured .eyebrow{margin-bottom:20px}
+@media (prefers-reduced-motion:reduce){.demo:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -307,6 +327,7 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
       <a class="navlink" href="#configurar">Set up</a>
       <a class="navlink" href="#dia-a-dia">Day to day</a>
       <a class="navlink" href="#assistente">Assistant</a>
+      <a class="navlink" href="#demonstracoes">Demos</a>
       <a class="navlink" href="#faq">FAQ</a>
     </nav>
     <div class="nav-actions">
@@ -334,6 +355,7 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
   <a href="#assistente">The assistant</a>
   <a href="#privacidade">Privacy</a>
   <a href="#faq">Frequently asked questions</a>
+  <a href="#demonstracoes">Demos</a>
 </nav>
 
 <main id="topo">
@@ -495,7 +517,17 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
 
     <div class="tip" data-reveal style="max-width:none;margin:0 0 44px"><i data-lucide="shield-check"></i><span>What works the magic: the keys go into an <b>encrypted vault on your machine</b> and never sit in plain text. When you turn the channel on, the system recognizes the key and <b>reveals that channel's screen on its own</b>, no reload. Register the key, the screen appears.</span></div>
 
-    <p class="eyebrow" style="margin-bottom:18px" data-reveal>Step by step, channel by channel</p>
+        <figure class="demo" data-reveal style="margin:0 0 32px">
+      <div class="demo-frame">
+        <video muted loop playsinline preload="none" poster="demos/integrations/poster.png" aria-label="Demo: Integrations">
+          <source src="demos/integrations/integrations-demo.mp4" type="video/mp4">
+        </video>
+        <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+      </div>
+      <figcaption><b>Integrations</b> — progressive disclosure per channel</figcaption>
+    </figure>
+
+<p class="eyebrow" style="margin-bottom:18px" data-reveal>Step by step, channel by channel</p>
 
     <!-- WhatsApp -->
     <details class="acc" data-reveal open>
@@ -614,7 +646,17 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
       </div>
     </details>
 
-    <div class="tip" data-reveal style="max-width:none;margin-top:26px"><i data-lucide="check-check"></i><span>Once you turn on any channel, it shows up in the panel's side menu <b>instantly</b>, and conversations start arriving in the single inbox. You can turn one channel on today and another next month, at your own pace.</span></div>
+        <figure class="demo" data-reveal style="margin:0 0 32px">
+      <div class="demo-frame">
+        <video muted loop playsinline preload="none" poster="demos/settings/poster.png" aria-label="Demo: Settings">
+          <source src="demos/settings/settings-demo.mp4" type="video/mp4">
+        </video>
+        <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+      </div>
+      <figcaption><b>Settings</b> — preferences and control</figcaption>
+    </figure>
+
+<div class="tip" data-reveal style="max-width:none;margin-top:26px"><i data-lucide="check-check"></i><span>Once you turn on any channel, it shows up in the panel's side menu <b>instantly</b>, and conversations start arriving in the single inbox. You can turn one channel on today and another next month, at your own pace.</span></div>
   </div>
 </section>
 
@@ -673,6 +715,38 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
         <div class="use"><i data-lucide="mouse-pointer-click"></i><span>Choose which groups to follow and tune out the noise from the rest.</span></div>
       </article>
     </div>
+    <div class="demo-featured" data-reveal>
+      <p class="eyebrow">See it in action</p>
+      <div class="demo-gallery">
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/conversas/poster.png" aria-label="Demo: Conversations">
+            <source src="demos/conversas/conversas-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Conversations</b> — support with AI assistance</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/crm/poster.png" aria-label="Demo: Graph CRM">
+            <source src="demos/crm/crm-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Graph CRM</b> — the map of relationships</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/funnels/poster.png" aria-label="Demo: Funnel">
+            <source src="demos/funnels/funnels-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Funnel</b> — kanban driven by the agent</figcaption>
+      </figure>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -726,6 +800,154 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
         <div class="pv"><div class="pic"><i data-lucide="moon-star"></i></div><h4>Human pace, no overdoing it</h4><p>On WhatsApp, sends respect quiet hours and a pace close to a real person's. That protects your number from blocks and stays on at all times.</p></div>
         <div class="pv"><div class="pic"><i data-lucide="eye"></i></div><h4>Everything is logged</h4><p>Every action has its record. You can always look back and see what was sent, when and to whom.</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DEMONSTRAÇÕES ===================== -->
+<section id="demonstracoes">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Demos</span>
+      <h2 class="title">See every screen in motion.</h2>
+      <p>Fifteen panel screens, recorded in real use. Scan through and see how each feature works in practice.</p>
+    </div>
+    <div class="demo-gallery">
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/conversas/poster.png" aria-label="Demo: Conversations">
+            <source src="demos/conversas/conversas-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Conversations</b> — support with AI assistance</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/overview/poster.png" aria-label="Demo: Overview">
+            <source src="demos/overview/overview-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Overview</b> — the dashboard at a glance</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/instances/poster.png" aria-label="Demo: Instances">
+            <source src="demos/instances/instances-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Instances</b> — connect and pair the account</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/integrations/poster.png" aria-label="Demo: Integrations">
+            <source src="demos/integrations/integrations-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Integrations</b> — progressive disclosure per channel</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/settings/poster.png" aria-label="Demo: Settings">
+            <source src="demos/settings/settings-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Settings</b> — preferences and control</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/crm/poster.png" aria-label="Demo: Graph CRM">
+            <source src="demos/crm/crm-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Graph CRM</b> — the map of relationships</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/funnels/poster.png" aria-label="Demo: Funnel">
+            <source src="demos/funnels/funnels-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Funnel</b> — kanban driven by the agent</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/contatos/poster.png" aria-label="Demo: Contacts">
+            <source src="demos/contatos/contatos-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Contacts</b> — the full people table</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/buscar/poster.png" aria-label="Demo: Search">
+            <source src="demos/buscar/buscar-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Search</b> — by word and by meaning</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/grupos/poster.png" aria-label="Demo: Groups">
+            <source src="demos/grupos/grupos-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Groups</b> — intelligence on your groups</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/followups/poster.png" aria-label="Demo: Follow-ups">
+            <source src="demos/followups/followups-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Follow-ups</b> — reach-outs at the right time</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/conversao/poster.png" aria-label="Demo: Conversion">
+            <source src="demos/conversao/conversao-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Conversion</b> — clear numbers per channel</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/resumos/poster.png" aria-label="Demo: Summaries">
+            <source src="demos/resumos/resumos-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Summaries</b> — hours of chat in a few lines</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/radar/poster.png" aria-label="Demo: Radar">
+            <source src="demos/radar/radar-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Radar</b> — what deserves your attention now</figcaption>
+      </figure>
+      <figure class="demo" data-reveal>
+        <div class="demo-frame">
+          <video muted loop playsinline preload="none" poster="demos/saude/poster.png" aria-label="Demo: Health">
+            <source src="demos/saude/saude-demo.mp4" type="video/mp4">
+          </video>
+          <button class="demo-toggle" type="button" aria-label="Play or pause"><i data-lucide="play" class="ic-play"></i><i data-lucide="pause" class="ic-pause"></i></button>
+        </div>
+        <figcaption><b>Health</b> — the system under control</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -871,6 +1093,33 @@ h2.title{font-size:clamp(1.9rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.0
     gsap.from(".hero .pill,.hero h1,.hero-sub,.hero-cta,.hero-note",{y:22,opacity:0,duration:.8,ease:"power3.out",stagger:.08});
     gsap.from(".channel-strip .chip",{y:16,opacity:0,duration:.5,ease:"power2.out",stagger:.05,delay:.35});
   });
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var demos=[].slice.call(document.querySelectorAll(".demo-frame"));
+  if(!demos.length) return;
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  demos.forEach(function(fr){
+    var v=fr.querySelector("video"), btn=fr.querySelector(".demo-toggle");
+    if(!v) return;
+    function sync(){ fr.classList.toggle("playing",!v.paused&&!v.ended); }
+    v.addEventListener("play",sync); v.addEventListener("pause",sync);
+    if(btn){ btn.addEventListener("click",function(){
+      if(v.paused){ var p=v.play(); if(p&&p.catch)p.catch(function(){}); } else { v.pause(); }
+    });}
+  });
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var v=en.target.querySelector("video"); if(!v) return;
+        if(en.isIntersecting){ if(!reduce){ var p=v.play(); if(p&&p.catch)p.catch(function(){}); } }
+        else { v.pause(); }
+      });
+    },{threshold:.35});
+    demos.forEach(function(fr){ io.observe(fr); });
+  }
 })();
 </script>
 </body>
